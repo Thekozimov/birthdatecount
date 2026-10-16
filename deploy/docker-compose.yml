@@ -1,0 +1,14 @@
+services:
+  birthday-bot:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    environment:
+      DATABASE_PATH: /app/data/birthday_counter.db
+      BACKUP_DIR: /app/backups
+    volumes:
+      - ../data:/app/data
+      - ../backups:/app/backups
